@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = token => {
-  if (token === undefined) {
+  if (token !== undefined) {
     return axios.create({
       baseURL: 'http://localhost:8088/api/',
       headers: {

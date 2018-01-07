@@ -1,5 +1,6 @@
 <template>
-  <div class="columns">
+<div class="container">
+    <div class="columns">
     <div class="column is-one-third"></div>
     <div class="column">
       <div class="field logo">
@@ -9,10 +10,7 @@
         <p class="control has-icons-left has-icons-right">
           <input class="input" type="email" placeholder="Email" v-model="username">
           <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fa fa-check"></i>
+            <i class="fa fa-user-circle-o"></i>
           </span>
         </p>
       </div>
@@ -38,6 +36,7 @@
     
     <div class="column"></div>
   </div>
+</div>
 </template>
 
 <script>
@@ -59,10 +58,9 @@ export default {
       this.$store
         .dispatch('login', obj)
         .then(() => {
-          // sabitleri çek
-          // location.pathname = '/';
+          location.pathname = '/';
           this.isError = false;
-          this.$router.push('/');
+          // this.$router.push('/');
         })
         .catch(err => {
           console.log(err);
