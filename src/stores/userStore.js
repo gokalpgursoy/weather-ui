@@ -1,7 +1,5 @@
 import userService from '../services/userService';
 
-// import userService from '@/services/userService';
-
 export default {
   state: {
     users: null,

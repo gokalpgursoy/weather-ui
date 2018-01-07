@@ -14,7 +14,7 @@
           <th></th>
         </tr>
       </thead>
-      <tbody v-for="item in userList">
+      <tbody v-for="item in currentUsers">
         <tr>
           <th>{{item.id}}</th>
           <td>{{item.username}}</td>
@@ -30,8 +30,8 @@
             </span>
           </td>
           <td>
-            <router-link class="button is-black" :to="{ name: 'updateUser', params: { id: item.id }}">Update</router-link>            
-            <router-link class="button is-warning" :to="{ name: 'deleteUser', params: { id: item.id }}">Delete</router-link>            
+            <router-link class="button is-warning" :to="{ name: 'updateUser', params: { id: item.id }}">Update</router-link>            
+            <router-link class="button is-danger" :to="{ name: 'deleteUser', params: { id: item.id }}">Delete</router-link>            
             
           </td>
 
@@ -43,26 +43,22 @@
 
 <script>
 import Header from '@/components/Header';
+import { mapGetters } from 'vuex';
 // import userService from '../../../services/userService';
 
 export default {
   name: 'users',
-  data() {
-    return {
-      userList: null,
-    };
-  },
   components: {
     Header,
   },
+  computed: {
+    ...mapGetters(['currentUsers']),
+  },
   async beforeMount() {
-    // this.userList = await userService.get();
-    // console.log(this.userList);
-
     this.$store
       .dispatch('getUsers')
-      .then(res => {
-        this.userList = res;
+      .then(() => {
+        // this.userList = res;
       })
       .catch(err => {
         console.log(err);

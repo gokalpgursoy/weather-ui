@@ -24,12 +24,16 @@ export default {
 
 <style computed>
 .home {
-  margin-top: 250px;
+  margin-top: 150px;
 }
 
 .divGeneral .button {
   width: 200px;
   height: 200px;
   border-radius: 100px;
+}
+
+.divgeneral .button:hover {
+  border-radius: 1000px;
 }
 </style>

@@ -5,7 +5,7 @@
     </div>
     <div class="column is-8"></div>
     <div class="column is-2">
-      <button id="btnLogout" class="button is-danger" @click="logout">LOGOUT</button>
+      <button id="btnLogout" class="button is-black" @click="logout">LOGOUT</button>
     </div>
   </div>
 </template>
