@@ -8,9 +8,12 @@ export default {
     password: '',
     isAdmin: false,
   },
-  getters: {},
+  getters: {
+    isAdmin: state => state.isAdmin,
+  },
   mutations: {
     setUserInfo(state, payload) {
+      console.log('admin', payload);
       state.username = payload.username;
       state.password = payload.password;
       state.isAdmin = payload.isAdmin;
@@ -22,7 +25,6 @@ export default {
         authService
           .login(payload.username, payload.password)
           .then(res => {
-            tools.cookie.set(config.global_key.tokenName, '', 0);
             tools.cookie.set(config.global_key.tokenName, res.data.access_token);
             payload.isAdmin = res.data.isAdmin;
             context.commit('setUserInfo', payload);

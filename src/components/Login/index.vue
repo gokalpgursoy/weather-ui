@@ -1,5 +1,6 @@
 <template>
-  <div class="columns">
+<div class="container">
+    <div class="columns">
     <div class="column is-one-third"></div>
     <div class="column">
       <div class="field logo">
@@ -38,6 +39,7 @@
     
     <div class="column"></div>
   </div>
+</div>
 </template>
 
 <script>
@@ -59,10 +61,9 @@ export default {
       this.$store
         .dispatch('login', obj)
         .then(() => {
-          // sabitleri çek
-          // location.pathname = '/';
+          location.pathname = '/';
           this.isError = false;
-          this.$router.push('/');
+          // this.$router.push('/');
         })
         .catch(err => {
           console.log(err);

@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/components/Login';
 import Home from '@/components/Home';
+import Users from '@/components/Users';
+
 import tools from '@/tools';
 
 Vue.use(Router);
@@ -18,6 +20,11 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users,
     },
   ],
 });
