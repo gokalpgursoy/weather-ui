@@ -1,3 +1,5 @@
+import userService from '../services/userService';
+
 // import userService from '@/services/userService';
 
 export default {
@@ -8,23 +10,22 @@ export default {
     currentUsers: state => state.users,
   },
   mutations: {
-    // setUserInfo(state, payload) {
-    //   state.users = payload.users;
-    // },
+    setUserList(state, payload) {
+      const { list } = payload;
+      state.users = list;
+    },
   },
   actions: {
-    // getUsers(context, payload) {
-    //   // return new Promise((resolve, reject) => {
-    //   //   authService
-    //   //     .login(payload.username, payload.password)
-    //   //     .then(res => {
-    //   //       tools.cookie.set(config.global_key.tokenName, res.data.access_token);
-    //   //       payload.isAdmin = res.data.isAdmin;
-    //   //       context.commit('setUserInfo', payload);
-    //   //       resolve(res);
-    //   //     })
-    //   //     .catch(err => reject(err));
-    //   // });
-    // },
+    getUsers(context) {
+      return userService
+        .get()
+        .then(res => {
+          context.commit('setUserList', {
+            list: res,
+          });
+          return res;
+        })
+        .catch(err => console.log(err));
+    },
   },
 };

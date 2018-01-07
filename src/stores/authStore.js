@@ -13,7 +13,6 @@ export default {
   },
   mutations: {
     setUserInfo(state, payload) {
-      console.log('admin', payload);
       state.username = payload.username;
       state.password = payload.password;
       state.isAdmin = payload.isAdmin;

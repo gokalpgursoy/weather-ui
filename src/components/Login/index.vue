@@ -10,10 +10,7 @@
         <p class="control has-icons-left has-icons-right">
           <input class="input" type="email" placeholder="Email" v-model="username">
           <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fa fa-check"></i>
+            <i class="fa fa-user-circle-o"></i>
           </span>
         </p>
       </div>
