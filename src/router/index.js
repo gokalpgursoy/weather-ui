@@ -12,7 +12,10 @@ import Locations from '@/components/Locations/Get';
 import LocationCreate from '@/components/Locations/Post';
 import LocationUpdate from '@/components/Locations/Put';
 import LocationDelete from '@/components/Locations/Delete';
+
 import Weather from '@/components/Weather';
+
+import Logs from '@/components/Logs';
 
 import tools from '@/tools';
 import store from '@/stores';
@@ -76,6 +79,11 @@ const router = new Router({
       path: '/weather',
       name: 'weather',
       component: Weather,
+    },
+    {
+      path: '/logs',
+      name: 'logs',
+      component: Logs,
     },
   ],
 });

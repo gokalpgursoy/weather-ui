@@ -33,6 +33,10 @@
       </div>
       <div class="column"></div>
     </div>
+    <div v-if="forecastError" class="notification is-warning">
+      <button class="delete"></button>
+      There are many locations with that location name. Please specify location name.
+    </div>
   </div>
 </template>
 
@@ -40,6 +44,8 @@
 import Header from '@/components/Header';
 import { mapGetters } from 'vuex';
 import forecastService from '@/services/forecastService';
+import loggerService from '@/services/loggerService';
+
 import _ from 'lodash';
 
 export default {
@@ -48,6 +54,7 @@ export default {
     return {
       selectedLocation: '',
       isForecast: false,
+      forecastError: false,
       forecastImage: '',
       title: '',
       res: {},
@@ -57,24 +64,38 @@ export default {
     Header,
   },
   computed: {
-    ...mapGetters(['currentLocations']),
+    ...mapGetters(['currentLocations', 'userId']),
   },
   methods: {
     async getReport() {
       /*eslint-disable */
+      const startDate = new Date();
       const loc = _.find(this.currentLocations, item => {
         return item.id === parseInt(this.selectedLocation);
       });
       const res = await forecastService.getForecastByTitle(loc.title);
+      const obj = {};
+
       if (res.success) {
+        this.forecastError = false;
         this.isForecast = true;
         this.forecastImage = res.image;
         this.title = res.title;
         this.res = res;
+        obj.isSuccess = 'true';
       } else {
         this.isForecast = false;
-        // error
+        this.forecastError = true;
+        obj.isSuccess = 'false';
       }
+      obj.userId = this.userId;
+      obj.locationId = this.selectedLocation;
+      obj.response = JSON.stringify(res.res);
+      const endDate = new Date();
+      obj.time = Math.abs(
+        endDate.getMilliseconds() - startDate.getMilliseconds()
+      );
+      await loggerService.setLog(obj);
     },
   },
 };
