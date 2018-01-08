@@ -8,6 +8,11 @@ export default {
     const res = await api(token).get('/users');
     return res.data;
   },
+  async getUserInfo() {
+    const token = await tools.cookie.get(config.global_key.tokenName);
+    const res = await api(token).get('/users/info');
+    return res.data;
+  },
   async post(data) {
     const token = await tools.cookie.get(config.global_key.tokenName);
     const res = await api(token).post('/users', data);

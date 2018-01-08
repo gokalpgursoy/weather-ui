@@ -25,5 +25,16 @@ export default {
         })
         .catch(err => console.log(err));
     },
+    getUsersInfo(context) {
+      return userService
+        .getUserInfo()
+        .then(res => {
+          context.commit('setUserList', {
+            list: res,
+          });
+          return res;
+        })
+        .catch(err => console.log(err));
+    },
   },
 };

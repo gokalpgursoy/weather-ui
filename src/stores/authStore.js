@@ -30,6 +30,7 @@ export default {
             tools.cookie.set(config.global_key.tokenName, res.data.access_token);
             payload.isAdmin = res.data.isAdmin;
             payload.userId = res.data.id;
+            context.dispatch('getLocations');
             context.commit('setUserInfo', payload);
             resolve(res);
           })

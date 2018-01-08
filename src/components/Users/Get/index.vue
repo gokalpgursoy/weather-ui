@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapGetters(['currentUsers']),
   },
-  async beforeMount() {
+  beforeMount() {
     this.$store
       .dispatch('getUsers')
       .then(() => {

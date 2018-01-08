@@ -9,7 +9,7 @@
     </div>
     <button class="button is-link" @click='getLogs'>Get Logs</button>
 
-    <table class="table">
+    <table class="table" v-if="isLogExist">
       <thead>
         <tr>
           <th>Id</th>
@@ -42,6 +42,10 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="isLogNotExist" class="notification is-warning">
+      <button class="delete"></button>
+      There is no log.
+    </div>
   </div>
 </template>
 
@@ -58,21 +62,37 @@ export default {
       currentLogs: null,
       logsById: null,
       selectedUserId: 0,
+      isLogExist: false,
+      isLogNotExist: false,
     };
   },
   components: {
     Header,
   },
   computed: {
-    ...mapGetters(['currentUsers', 'currentLocations']),
+    ...mapGetters(['isAdmin', 'currentUsers', 'currentLocations']),
+  },
+  async beforeMount() {
+    if (this.isAdmin) {
+      await this.$store.dispatch('getUsers');
+    } else {
+      await this.$store.dispatch('getUsersInfo');
+    }
   },
   methods: {
     /*eslint-disable */
     async getLogs() {
       this.logsById = await loggerService.getLogsByUser(this.selectedUserId);
-      console.log(this.logsById);
+      if (this.logsById.length <= 0) {
+        this.isLogExist = false;
+        this.isLogNotExist = true;
+      } else {
+        this.isLogExist = true;
+        this.isLogNotExist = false;
+      }
     },
     getUsername(id) {
+      console.log('ID', id);
       return _.find(this.currentUsers, itemUser => {
         return itemUser.id === id;
       }).username;

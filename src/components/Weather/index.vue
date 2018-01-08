@@ -66,6 +66,9 @@ export default {
   computed: {
     ...mapGetters(['currentLocations', 'userId']),
   },
+  async beforeMount() {
+    await this.$store.dispatch('getLocations');
+  },
   methods: {
     async getReport() {
       /*eslint-disable */

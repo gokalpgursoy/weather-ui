@@ -8,7 +8,7 @@
       </div>
       <div class="field">
         <p class="control has-icons-left has-icons-right">
-          <input class="input" type="email" placeholder="Email" v-model="username">
+          <input class="input" type="email" placeholder="Username" v-model="username">
           <span class="icon is-small is-left">
             <i class="fa fa-user-circle-o"></i>
           </span>
@@ -44,8 +44,8 @@ export default {
   name: 'login',
   data() {
     return {
-      username: 'root',
-      password: '123',
+      username: '',
+      password: '',
       isError: false,
     };
   },
