@@ -37,12 +37,13 @@ export default {
   color: #2c3e50; */
   background-image: url('./assets/img/forecast-bg.jpg');
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   left: 0;
   right: 0;
   margin: auto;
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
+  position: absolute;
 }
 </style>
