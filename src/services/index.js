@@ -3,13 +3,13 @@ const axios = require('axios');
 module.exports = token => {
   if (token !== undefined) {
     return axios.create({
-      baseURL: 'http://localhost:8088/api/',
+      baseURL: 'https://ggweather.herokuapp.com/api/',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   }
   return axios.create({
-    baseURL: 'http://localhost:8088/token',
+    baseURL: 'https://ggweather.herokuapp.com/token',
   });
 };
