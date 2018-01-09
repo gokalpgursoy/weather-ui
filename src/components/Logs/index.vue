@@ -24,8 +24,8 @@
       <tbody v-for="item in this.logsById">
         <tr>
           <th>{{item.id}}</th>
-          <td>{{item.userId}}</td>
-          <td>{{item.locationId}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.locationTitle}}</td>
           <td>{{item.ipAddress}}</td>
           <td>{{item.time}}</td>
           <td v-if="item.isSuccess === 'true'">
